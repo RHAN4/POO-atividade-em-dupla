@@ -1,4 +1,6 @@
-class Medico: 
+from projeto.models.funcionario import Funcionario
+
+class Medico(Funcionario): 
     def __init__(self, crm: str) -> None:
         self.crm = crm 
 

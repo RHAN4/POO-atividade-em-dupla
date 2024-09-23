@@ -1,5 +1,6 @@
+from projeto.models.enums.unidadeFederativa import UF
 class Endereco:
-    def __init__(self, logradouro: str, numero: str, complemento: str, cep: str, cidade: str, uf: UnidadeFederativa ) -> None:
+    def __init__(self, logradouro: str, numero: str, complemento: str, cep: str, cidade: str, uf: UF ) -> None:
         self.logradouro = logradouro 
         self.numero = numero
         self.complemento = complemento
@@ -8,7 +9,7 @@ class Endereco:
         self.uf = uf 
 
     def __str__(self) -> str:
-        return (f"Logradouro: {self.logradouro}"
+        return (f"\nLogradouro: {self.logradouro}"
                 f"\nNumero: {self.numero}"
                 f"\nComplemento: {self.complemento}"
                 f"\nCep: {self.cep}"

@@ -1,16 +1,17 @@
 from abc import ABC, abstractmethod
+from projeto.models.endereco import Endereco
 
 class Pessoa(ABC):
     @abstractmethod
     def __init__(self,id: str,  nome: str, telefone: str, email: str, endereco: Endereco)  -> None:
-        self.id= id 
+        self.id = id 
         self.nome = nome
         self.telefone = telefone 
         self.email = email 
         self.endereco = endereco 
     
     def __str__(self) -> str:
-        return (f"Id: {self.id}"
+        return (f"\nId: {self.id}"
                 f"\nNome: {self.nome}"
                 f"\nTelefone: {self.telefone}"
                 f"\nEmail: {self.email}"
@@ -18,8 +19,8 @@ class Pessoa(ABC):
                 )
 
                 
-    def _verificar_nome(selfl, nome):
-        if nome == "Marta" 
+    #  def _verificar_nome(self, nome):
+    #      if nome == "Marta" 
          
     #def _verificar_idade(self, idade):
      #   if idade < 0:

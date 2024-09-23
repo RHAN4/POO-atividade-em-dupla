@@ -1,5 +1,6 @@
+from projeto.models.funcionario import Funcionario
 
-class Motoboy:
+class Motoboy(Funcionario):
     def __init__(self, cnh: str) -> None:
         self.cnh = cnh
     
