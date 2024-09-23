@@ -15,3 +15,4 @@ class Endereco:
                 f"\nCidade: {self.cidade}"
                 f"\nUnidade Federativa: {self.uf}"
                 )
+                
