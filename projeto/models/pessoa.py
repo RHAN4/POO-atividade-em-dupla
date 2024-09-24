@@ -11,7 +11,7 @@ class Pessoa(ABC):
         self.endereco = endereco 
     
     def __str__(self) -> str:
-        return (f"\nId: {self.id}"
+        return (f"\nID: {self.id}"
                 f"\nNome: {self.nome}"
                 f"\nTelefone: {self.telefone}"
                 f"\nEmail: {self.email}"

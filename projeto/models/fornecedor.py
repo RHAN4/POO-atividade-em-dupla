@@ -1,5 +1,5 @@
 class Produto:
-    def __init__(self, produto) -> None:
+    def __init__(self, produto: str) -> None:
         self.produto = produto
 
     def __str__(self) -> str:
