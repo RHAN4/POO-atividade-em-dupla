@@ -12,6 +12,10 @@ class Advogado(Funcionario):
                           genero, estadoCivil)
         self.OAB = OAB
 
+    def _verificar_id(self, id: int) -> int:
+        return super()._verificar_id(id)
+
+
     def __str__(self) -> str:
         return super().__str__()
     def __str__(self) -> str:

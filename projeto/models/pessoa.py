@@ -9,7 +9,15 @@ class Pessoa(ABC):
         self.telefone = telefone 
         self.email = email 
         self.endereco = endereco 
-    
+
+    def _verificar_id(self, id: int) -> int:
+        if not isinstance(id, int):
+            raise TypeError("Digite somente números inteiros para ID.")
+        if id < 0:
+            raise ValueError("Digite um número que seja inteiro e positivo para ID.")
+        return id
+
+
     def __str__(self) -> str:
         return (f"\nID: {self.id}"
                 f"\nNome: {self.nome}"

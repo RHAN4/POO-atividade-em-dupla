@@ -9,8 +9,10 @@ class Cliente(PessoaFisica):
         super().__init__(id, nome, telefone, email, endereco, dataNascimento, genero, estadoCivil)
         self.protocoloAtendimento = protocoloAtendimento
 
+    def _verificar_id(self, id: int) -> int:
+        return super()._verificar_id(id)
+
     def __str__(self) -> str:
         return super().__str__()
-    
     def __str__(self) -> str:
         return (f"\nNúmero de protocolo: {self.protocoloAtendimento}")
