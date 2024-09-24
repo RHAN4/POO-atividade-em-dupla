@@ -17,4 +17,4 @@ class Engenheiro(Funcionario):
     def __str__(self) -> str:
         return super().__str__()
     def __str__(self) -> str:
-        return (f"\nCNH: {self.cnh}")
+        return (f"\nCREA: {self.CREA}")

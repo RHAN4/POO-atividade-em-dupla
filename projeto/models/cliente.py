@@ -4,7 +4,7 @@ from projeto.models.enums.generos import Generos
 from projeto.models.pessoaFisica import PessoaFisica
 
 class Cliente(PessoaFisica):
-    def __init__(self, id: str, nome: str, telefone: str, email: str, endereco: Endereco, 
+    def __init__(self, id: int, nome: str, telefone: str, email: str, endereco: Endereco, 
                  dataNascimento: str, genero: Generos, estadoCivil: EstadoCivil, protocoloAtendimento: str):
         super().__init__(id, nome, telefone, email, endereco, dataNascimento, genero, estadoCivil)
         self.protocoloAtendimento = protocoloAtendimento

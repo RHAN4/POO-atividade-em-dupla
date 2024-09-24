@@ -7,13 +7,13 @@ from projeto.models.enums.estadoCivil import EstadoCivil
 
 @pytest.fixture
 def pessoa_valida():
-    cliente = Cliente("2658", "Felipe", "7198755214", "felipe@gmail.com", 
+    cliente = Cliente(2658, "Felipe", "7198755214", "felipe@gmail.com", 
                       Endereco("Terreno K", "85", "Frente a praça", "41874-258", "Salvador", UF.BAHIA), "11/02/1998", 
                       Generos.MASCULINO, EstadoCivil.DIVORCIADO, "715565656665656")
     return cliente
 
 def test_validar_id_cliente(pessoa_valida):
-     assert pessoa_valida.id == "2658"
+     assert pessoa_valida.id == 2658
 
 def test_validar_nome_cliente(pessoa_valida):
      assert pessoa_valida.nome == "Felipe"

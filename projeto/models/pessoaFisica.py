@@ -1,10 +1,11 @@
+from abc import ABC, abstractmethod
 from projeto.models.pessoa import Pessoa
 from projeto.models.endereco import Endereco
 from projeto.models.enums.generos import Generos
 from projeto.models.enums.estadoCivil import EstadoCivil
 
-class PessoaFisica(Pessoa):
-    def __init__(self, id: str,  nome: str, telefone: str, email: str, endereco: Endereco,
+class PessoaFisica(Pessoa, ABC):
+    def __init__(self, id: int,  nome: str, telefone: str, email: str, endereco: Endereco,
                   dataNascimento: str, genero: Generos, estadoCivil: EstadoCivil):
         super().__init__(id, nome, telefone, email, endereco)
         self.dataNascimento = dataNascimento

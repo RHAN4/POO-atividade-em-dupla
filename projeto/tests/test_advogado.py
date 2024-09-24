@@ -9,14 +9,14 @@ from projeto.models.enums.unidadeFederativa import UF
 
 @pytest.fixture
 def pessoa_valida():
-    advogado = Advogado("9999", "Ariel", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
-                    "8479", Setores.JURIDICO, "10000", 
+    advogado = Advogado(9999, "Ariel", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+                    "8479", Setores.JURIDICO, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
     return advogado
 
 def test_validar_id_advogado(pessoa_valida):
-     assert pessoa_valida.id == "9999"
+     assert pessoa_valida.id == 9999
 
 def test_validar_nome_advogado(pessoa_valida):
      assert pessoa_valida.nome == "Ariel"
@@ -49,7 +49,7 @@ def test_validar_setor_advogado(pessoa_valida):
     assert pessoa_valida.setor == Setores.JURIDICO
 
 def test_validar_salario_advogado(pessoa_valida):
-    assert pessoa_valida.salario == "10000"
+    assert pessoa_valida.salario == 10000
 
 def test_validar_crea_advogado(pessoa_valida):
     assert pessoa_valida.OAB == "7444"
