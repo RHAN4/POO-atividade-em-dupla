@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from projeto.models.endereco import Endereco
 from projeto.models.pessoa import Pessoa
-from .fornecedor import Fornecedor
 
 class PessoaJuridica(Pessoa, ABC):
     def __init__(self, id: int, nome: str, telefone: str, email: str, endereco: Endereco, 
