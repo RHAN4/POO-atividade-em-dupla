@@ -50,11 +50,11 @@ def test_validar_cidade(produto_valido):
 def test_validar_uf(produto_valido):
     assert produto_valido.endereco.uf == UF.BAHIA
 
-# def test_validar_id_tipo_int(produto_valido):
-#      with pytest.raises(TypeError, match="Digite somente números inteiros para o ID."):
-#          Fornecedor("W", "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
-#                           Endereco("Rua L", "15", "Setor 8", "49005470", "Salvador", UF.BAHIA), "798889/0001", "13339", 
-#                           "Vidro blindado")
+def test_validar_id_tipo_int(produto_valido):
+    with pytest.raises(TypeError, match="Digite somente números inteiros para o ID."):
+        Fornecedor("W", "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
+                          Endereco("Rua L", "15", "Setor 8", "49005470", "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                          "Vidro blindado")
 
 # def test_validar_id_valor_negativo(produto_valido):
 #      with pytest.raises(ValueError, match="Digite um número que seja inteiro e positivo para o ID."):
