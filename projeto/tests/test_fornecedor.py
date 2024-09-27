@@ -50,20 +50,37 @@ def test_validar_cidade(produto_valido):
 def test_validar_uf(produto_valido):
     assert produto_valido.endereco.uf == UF.BAHIA
 
-def test_validar_id_tipo_int(produto_valido):
-    with pytest.raises(TypeError, match="Digite somente números inteiros para o ID."):
-        Fornecedor("W", "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
-                          Endereco("Rua L", "15", "Setor 8", "49005470", "Salvador", UF.BAHIA), "798889/0001", "13339", 
-                          "Vidro blindado")
-
-# def test_validar_id_valor_negativo(produto_valido):
-#      with pytest.raises(ValueError, match="Digite um número que seja inteiro e positivo para o ID."):
-#          Fornecedor(-5247, "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
-#                           Endereco("Rua L", "15", "Setor 8", "49005470", "Salvador", UF.BAHIA), "798889/0001", "13339", 
-#                           "Vidro blindado")
+def test_id_valor_negativo(produto_valido):
+    with pytest.raises(ValueError, match = "Digite apenas números positivos para o ID"):
+        Fornecedor(-5247, "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
+                         Endereco("Rua L", "15", "Setor 8", "49005470",
+                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                         "Vidro blindado")        
         
-# def test_validar_nome_vazio(produto_valido):
-#      with pytest.raises(ValueError, match="O nome não pode estar vazio."):
-#          Fornecedor(5247, "", "71987874545", "vidracaria@gmail.com", 
-#                           Endereco("Rua L", "15", "Setor 8", "49005470", "Salvador", UF.BAHIA), "798889/0001", "13339", 
-#                           "Vidro blindado")
+def test_id_valor_invalido(produto_valido):
+    with pytest.raises(TypeError, match = "Digite apenas números para o ID"):
+        Fornecedor("5247", "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
+                         Endereco("Rua L", "15", "Setor 8", "49005470",
+                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                         "Vidro blindado")
+        
+def test_nome_vazio(produto_valido):
+    with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
+        Fornecedor(5247, "", "71987874545", "vidracaria@gmail.com", 
+                         Endereco("Rua L", "15", "Setor 8", "49005470",
+                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                         "Vidro blindado")
+        
+def test_telefone_invalido(produto_valido):
+   with pytest.raises(TypeError, match= "Digite apenas números."):
+        Fornecedor(5247, "Vidraçaria", 71987874545, "vidracaria@gmail.com", 
+                         Endereco("Rua L", "15", "Setor 8", "49005470",
+                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                         "Vidro blindado")
+
+def test_email_invalido(produto_valido):
+   with pytest.raises(TypeError, match= "Email não pode estar vazio."):
+        Fornecedor(5247, "Vidraçaria", "71987874545", "", 
+                         Endereco("Rua L", "15", "Setor 8", "49005470",
+                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                         "Vidro blindado")

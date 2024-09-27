@@ -53,3 +53,33 @@ def test_validar_endereco_cidade_cliente(pessoa_valida):
 
 def test_validar_endereco_uf_cliente(pessoa_valida):
     assert pessoa_valida.endereco.uf == UF.BAHIA
+
+def test_id_valor_negativo(pessoa_valida):
+    with pytest.raises(ValueError, match = "Digite apenas números positivos para o ID"):
+        Cliente(-2658, "Felipe", "7198755214", "felipe@gmail.com", 
+                      Endereco("Terreno K", "85", "Frente a praça", "41874-258", "Salvador", UF.BAHIA), "11/02/1998", 
+                      Generos.MASCULINO, EstadoCivil.DIVORCIADO, "715565656665656")
+        
+def test_id_valor_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "Digite apenas números para o ID"):
+        Cliente("2658", "Felipe", "7198755214", "felipe@gmail.com", 
+                      Endereco("Terreno K", "85", "Frente a praça", "41874-258", "Salvador", UF.BAHIA), "11/02/1998", 
+                      Generos.MASCULINO, EstadoCivil.DIVORCIADO, "715565656665656")
+        
+def test_nome_vazio(pessoa_valida):
+    with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
+        Cliente(2658, "", "7198755214", "felipe@gmail.com", 
+                      Endereco("Terreno K", "85", "Frente a praça", "41874-258", "Salvador", UF.BAHIA), "11/02/1998", 
+                      Generos.MASCULINO, EstadoCivil.DIVORCIADO, "715565656665656")
+        
+def test_telefone_invalido(pessoa_valida):
+   with pytest.raises(TypeError, match= "Digite apenas números."):
+        Cliente(2658, "Felipe", 7198755214, "felipe@gmail.com", 
+                      Endereco("Terreno K", "85", "Frente a praça", "41874-258", "Salvador", UF.BAHIA), "11/02/1998", 
+                      Generos.MASCULINO, EstadoCivil.DIVORCIADO, "715565656665656")
+        
+def test_email_invalido(pessoa_valida):
+   with pytest.raises(TypeError, match= "Email não pode estar vazio."):
+        Cliente(2658, "Felipe", "7198755214", "", 
+                      Endereco("Terreno K", "85", "Frente a praça", "41874-258", "Salvador", UF.BAHIA), "11/02/1998", 
+                      Generos.MASCULINO, EstadoCivil.DIVORCIADO, "715565656665656")

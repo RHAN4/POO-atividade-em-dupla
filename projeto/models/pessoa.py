@@ -5,51 +5,32 @@ class Pessoa(ABC):
     @abstractmethod
     def __init__(self, id: int,  nome: str, telefone: str, email: str, endereco: Endereco)  -> None:
         self.id = self._verificar_id(id)
-        self.nome = nome
-        self.telefone = telefone 
-        self.email = email 
+        self.nome = self._verificar_nome(nome)
+        self.telefone = self._verificar_telefone(telefone)
+        self.email = self._verificar_email(email)
         self.endereco = endereco 
     
     def _verificar_id(self, id):
-        if not isinstance(id, int):
-            raise TypeError("Digite somente números inteiros para o ID.")
-        return id
+            if not isinstance(id, int):
+                raise TypeError("Digite apenas números para o ID")
+            if id < 0:
+                raise ValueError("Digite apenas números positivos para o ID")
+            return id
 
-# Impedir que letras sejam inseridas para o ID
-#if not isinstance(id, int):
-#    raise TypeError("ID deve conter apenas números.")
-# def test_id_int():
-#     # id == "DDD"
-
-# # Impedir que seja inserido números negativos para o ID
-# if not isinstance (id, int):
-#     raise ValueError("ID não pode ser negativa.")
-# def test_id_positivo():
-#     id == -7859
-
-# def verificar_nome(self, nome):
-#     if nome == "Vidraçaria":
-#         pass
-#         if not isinstance (nome, str):
-#             raise NameError("O nome não pode ser vazio.")
-# def test_nome_vazio():
-#             nome == ""
-
-
-# def verificar_id(self, id):
-#     if id < 0:
-#             raise ValueError("ID não pode ser negativa.")
-#     if not isinstance(id, int):
-#             raise TypeError("ID deve conter apenas números.")
-#     return id
-
-    # def _verificar_id(self, id: int) -> int:
-    #     if not isinstance(id, int):
-    #         raise TypeError("Digite somente números inteiros para ID.")
-    #     if id < 0:
-    #         raise ValueError("Digite um número que seja inteiro e positivo para ID.")
-    #     return id
-
+    def _verificar_nome(self, nome):
+            if not isinstance(nome, str) or not nome.strip():
+                raise ValueError("O nome não pode estar em branco")
+            return nome
+    
+    def _verificar_telefone(self, telefone):
+        if not isinstance (telefone, str):
+            raise TypeError("Digite apenas números.")
+        return telefone
+    
+    def _verificar_email(self, email):
+            if not isinstance(email, str) or not email.strip():
+                raise TypeError("Email não pode estar vazio.")
+            return email
 
     def __str__(self) -> str:
         return (f"\nID: {self.id}"

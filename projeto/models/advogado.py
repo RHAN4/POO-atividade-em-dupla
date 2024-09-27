@@ -12,8 +12,22 @@ class Advogado(Funcionario):
                           genero, estadoCivil)
         self.OAB = OAB
 
-    def _verificar_id(self, id: int) -> int:
-        return super()._verificar_id(id)
+    # def _verificar_id(self, valor):
+    #         """Método para verificação de idade com métodos auxiliares."""
+    #         self._verificar_id_tipo_invalido(valor)
+    #         self._verificar_id_negativa(valor)
+
+    #         self.idade = valor
+    #         return self.idade
+
+    # def _verificar_id_negativa(self, valor):
+    #         """Método auxiliar para verificação de idade negativa."""
+    #         if valor <= 0:
+    #             raise ValueError("O ID não pode ser negativa.")
+
+
+    # def _verificar_id(self, id: int) -> int:
+    #     return super()._verificar_id(id)
 
 
     def __str__(self) -> str:

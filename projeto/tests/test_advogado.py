@@ -71,3 +71,38 @@ def test_validar_endereco_cidade_advogado(pessoa_valida):
 
 def test_validar_endereco_uf_advogado(pessoa_valida):
     assert pessoa_valida.endereco.uf == UF.BAHIA
+
+def test_id_valor_negativo(pessoa_valida):
+    with pytest.raises(ValueError, match = "Digite apenas números positivos para o ID"):
+        Advogado(-9999, "Ariel", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+                    "8479", Setores.JURIDICO, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
+        
+def test_id_valor_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "Digite apenas números para o ID"):
+        Advogado("9999", "Ariel", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+                    "8479", Setores.JURIDICO, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
+
+def test_nome_vazio(pessoa_valida):
+    with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
+        Advogado(9999, "", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+                    "8479", Setores.JURIDICO, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
+        
+def test_telefone_invalido(pessoa_valida):
+   with pytest.raises(TypeError, match= "Digite apenas números."):
+        Advogado(9999, "Ariel", 7198442578, "ariel@gmail.com", "12574896802", "14852974", 
+                    "8479", Setores.JURIDICO, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
+
+def test_email_invalido(pessoa_valida):
+   with pytest.raises(TypeError, match= "Email não pode estar vazio."):
+        Advogado(9999, "Ariel", "7198442578", "", "12574896802", "14852974", 
+                    "8479", Setores.JURIDICO, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
