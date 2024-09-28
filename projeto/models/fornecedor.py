@@ -13,8 +13,3 @@ class Fornecedor(PessoaJuridica):
         return super().__str__()
     def __str__(self) -> str:
         return (f"\nProduto fornecido: {self.produto}")
-
-# if not isinstance(id, int):
-#     raise ValueError("ID deve conter apenas números.")
-# def test_id_int():
-#     id == "555"

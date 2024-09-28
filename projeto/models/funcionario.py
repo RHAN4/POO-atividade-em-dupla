@@ -16,7 +16,6 @@ class Funcionario(PessoaFisica, ABC):
         self.setor = setor
         self.salario = salario
 
-
     def _verificar_CPF(self, CPF):
             if len(CPF) > 14:
                 raise TypeError("CPF inválido")

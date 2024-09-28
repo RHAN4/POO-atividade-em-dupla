@@ -11,9 +11,6 @@ class Engenheiro(Funcionario):
         super().__init__(id, nome, telefone, email, CPF, RG, matricula, setor, salario, endereco, dataNascimento, genero, estadoCivil)
         self.CREA = CREA
 
-    def _verificar_id(self, id: int) -> int:
-        return super()._verificar_id(id)
-
     def __str__(self) -> str:
         return super().__str__()
     def __str__(self) -> str:
