@@ -7,7 +7,7 @@ from projeto.models.enums.unidadeFederativa import UF
 def produto_valido():
     produto = Fornecedor(5247, "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
                          Endereco("Rua L", "15", "Setor 8", "49005470",
-                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                                   "Salvador", UF.BAHIA), "22222222222222", "13339", 
                          "Vidro blindado")
     return produto
 
@@ -24,7 +24,7 @@ def test_validar_email(produto_valido):
     assert produto_valido.email == "vidracaria@gmail.com"
 
 def test_validar_CNPJ(produto_valido):
-    assert produto_valido.CNPJ == "798889/0001"
+    assert produto_valido.CNPJ == "22222222222222"
 
 def test_validar_inscricaoEstadual(produto_valido):
     assert produto_valido.inscricaoEstadual == "13339"
@@ -54,33 +54,40 @@ def test_id_valor_negativo(produto_valido):
     with pytest.raises(ValueError, match = "Digite apenas números positivos para o ID"):
         Fornecedor(-5247, "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
                          Endereco("Rua L", "15", "Setor 8", "49005470",
-                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                                   "Salvador", UF.BAHIA), "22222222222222", "13339", 
                          "Vidro blindado")        
         
 def test_id_valor_invalido(produto_valido):
     with pytest.raises(TypeError, match = "Digite apenas números para o ID"):
         Fornecedor("5247", "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
                          Endereco("Rua L", "15", "Setor 8", "49005470",
-                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                                   "Salvador", UF.BAHIA), "22222222222222", "13339", 
                          "Vidro blindado")
         
 def test_nome_vazio(produto_valido):
     with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
         Fornecedor(5247, "", "71987874545", "vidracaria@gmail.com", 
                          Endereco("Rua L", "15", "Setor 8", "49005470",
-                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                                   "Salvador", UF.BAHIA), "22222222222222", "13339", 
                          "Vidro blindado")
         
 def test_telefone_invalido(produto_valido):
    with pytest.raises(TypeError, match= "Digite apenas números."):
         Fornecedor(5247, "Vidraçaria", 71987874545, "vidracaria@gmail.com", 
                          Endereco("Rua L", "15", "Setor 8", "49005470",
-                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                                   "Salvador", UF.BAHIA), "22222222222222", "13339", 
                          "Vidro blindado")
 
 def test_email_invalido(produto_valido):
    with pytest.raises(TypeError, match= "Email não pode estar vazio."):
         Fornecedor(5247, "Vidraçaria", "71987874545", "", 
                          Endereco("Rua L", "15", "Setor 8", "49005470",
-                                   "Salvador", UF.BAHIA), "798889/0001", "13339", 
+                                   "Salvador", UF.BAHIA), "22222222222222", "13339", 
+                         "Vidro blindado")
+        
+def test_CNPJ_invalido(produto_valido):
+    with pytest.raises(TypeError, match = "CNPJ inválido."):
+        Fornecedor(5247, "Vidraçaria", "71987874545", "vidracaria@gmail.com", 
+                         Endereco("Rua L", "15", "Setor 8", "49005470",
+                                   "Salvador", UF.BAHIA), "222222222222225", "13339", 
                          "Vidro blindado")

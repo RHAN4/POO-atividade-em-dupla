@@ -8,7 +8,7 @@ from projeto.models.enums.unidadeFederativa import UF
 
 @pytest.fixture
 def pessoa_valida():
-    medico = Medico(5568, "Fernanda", "7198442578", "fernanda@gmail.com", "12574896802", "14852974", 
+    medico = Medico(5568, "Fernanda", "7198442578", "fernanda@gmail.com", "99999999999999", "222222222222", 
                     "8479", Setores.SAUDE, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")
@@ -27,10 +27,10 @@ def test_medico_email_valido(pessoa_valida):
      assert pessoa_valida.email == "fernanda@gmail.com"
 
 def test_medico_cpf_valido(pessoa_valida):
-     assert pessoa_valida.CPF == "12574896802"
+     assert pessoa_valida.CPF == "99999999999999"
 
 def test_medico_rg_valido(pessoa_valida):
-     assert pessoa_valida.RG == "14852974"
+     assert pessoa_valida.RG == "222222222222"
 
 def test_medico_matricula_valido(pessoa_valida):
      assert pessoa_valida.matricula == "8479"
@@ -73,35 +73,49 @@ def test_medico_endereco_uf_valido(pessoa_valida):
 
 def test_id_valor_negativo(pessoa_valida):
     with pytest.raises(ValueError, match = "Digite apenas números positivos para o ID"):
-        Medico(-5568, "Fernanda", "7198442578", "fernanda@gmail.com", "12574896802", "14852974", 
+        Medico(-5568, "Fernanda", "7198442578", "fernanda@gmail.com", "99999999999999", "222222222222", 
                     "8479", Setores.SAUDE, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")        
         
 def test_id_valor_invalido(pessoa_valida):
     with pytest.raises(TypeError, match = "Digite apenas números para o ID"):
-        Medico("5568", "Fernanda", "7198442578", "fernanda@gmail.com", "12574896802", "14852974", 
+        Medico("5568", "Fernanda", "7198442578", "fernanda@gmail.com", "99999999999999", "222222222222", 
                     "8479", Setores.SAUDE, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")
         
 def test_nome_vazio(pessoa_valida):
     with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
-        Medico(5568, "", "7198442578", "fernanda@gmail.com", "12574896802", "14852974", 
+        Medico(5568, "", "7198442578", "fernanda@gmail.com", "99999999999999", "14852974", 
                     "8479", Setores.SAUDE, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")
         
 def test_telefone_invalido(pessoa_valida):
    with pytest.raises(TypeError, match= "Digite apenas números."):
-        Medico(5568, "Fernanda", 7198442578, "fernanda@gmail.com", "12574896802", "14852974", 
+        Medico(5568, "Fernanda", 7198442578, "fernanda@gmail.com", "99999999999999", "14852974", 
                     "8479", Setores.SAUDE, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")
 
 def test_email_invalido(pessoa_valida):
    with pytest.raises(TypeError, match= "Email não pode estar vazio."):
-        Medico(5568, "Fernanda", "7198442578", "", "12574896802", "14852974", 
+        Medico(5568, "Fernanda", "7198442578", "", "99999999999999", "14852974", 
+                    "8479", Setores.SAUDE, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")
+        
+def test_rg_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "RG inválido"):
+        Medico(5568, "Fernanda", "7198442578", "fernanda@gmail.com", "99999999999999", "2222222222227", 
+                    "8479", Setores.SAUDE, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")
+
+def test_cpf_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "CPF inválido"):
+        Medico(5568, "Fernanda", "7198442578", "fernanda@gmail.com", "999999999999994", "222222222222", 
                     "8479", Setores.SAUDE, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.VIUVO, "7444")

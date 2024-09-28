@@ -9,7 +9,7 @@ from projeto.models.enums.unidadeFederativa import UF
 
 @pytest.fixture
 def pessoa_valida():
-    engenheiro = Engenheiro(1111, "Mateus", "7198442578", "mateus@gmail.com", "12574896802", "14852974", 
+    engenheiro = Engenheiro(1111, "Mateus", "7198442578", "mateus@gmail.com", "88888888888888", "111111111111", 
                     "8479", Setores.ENGENHARIA, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")
@@ -28,10 +28,10 @@ def test_engenheiro_email_valido(pessoa_valida):
      assert pessoa_valida.email == "mateus@gmail.com"
 
 def test_engenheiro_cpf_valido(pessoa_valida):
-     assert pessoa_valida.CPF == "12574896802"
+     assert pessoa_valida.CPF == "88888888888888"
 
 def test_engenheiro_rg_valido(pessoa_valida):
-     assert pessoa_valida.RG == "14852974"
+     assert pessoa_valida.RG == "111111111111"
 
 def test_engenheiro_matricula_valido(pessoa_valida):
      assert pessoa_valida.matricula == "8479"
@@ -74,35 +74,49 @@ def test_engenheiro_uf_valido(pessoa_valida):
 
 def test_id_valor_negativo(pessoa_valida):
     with pytest.raises(ValueError, match = "Digite apenas números positivos para o ID"):
-        Engenheiro(-1111, "Mateus", "7198442578", "mateus@gmail.com", "12574896802", "14852974", 
+        Engenheiro(-1111, "Mateus", "7198442578", "mateus@gmail.com", "88888888888888", "111111111111", 
                     "8479", Setores.ENGENHARIA, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")        
         
 def test_id_valor_invalido(pessoa_valida):
     with pytest.raises(TypeError, match = "Digite apenas números para o ID"):
-        Engenheiro("1111", "Mateus", "7198442578", "mateus@gmail.com", "12574896802", "14852974", 
+        Engenheiro("1111", "Mateus", "7198442578", "mateus@gmail.com", "88888888888888", "111111111111", 
                     "8479", Setores.ENGENHARIA, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")
         
 def test_nome_vazio(pessoa_valida):
     with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
-        Engenheiro(1111, "", "7198442578", "mateus@gmail.com", "12574896802", "14852974", 
+        Engenheiro(1111, "", "7198442578", "mateus@gmail.com", "88888888888888", "111111111111", 
                     "8479", Setores.ENGENHARIA, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")
 
 def test_telefone_invalido(pessoa_valida):
    with pytest.raises(TypeError, match= "Digite apenas números."):
-        Engenheiro(1111, "Mateus", 7198442578, "mateus@gmail.com", "12574896802", "14852974", 
+        Engenheiro(1111, "Mateus", 7198442578, "mateus@gmail.com", "88888888888888", "111111111111", 
                     "8479", Setores.ENGENHARIA, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")
         
 def test_email_invalido(pessoa_valida):
    with pytest.raises(TypeError, match= "Email não pode estar vazio."):
-        Engenheiro(1111, "Mateus", "7198442578", "", "12574896802", "14852974", 
+        Engenheiro(1111, "Mateus", "7198442578", "", "88888888888888", "111111111111", 
+                    "8479", Setores.ENGENHARIA, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")
+
+def test_rg_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "RG inválido"):
+        Engenheiro(1111, "Mateus", "7198442578", "mateus@gmail.com", "88888888888888", "1111111111114", 
+                    "8479", Setores.ENGENHARIA, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")
+
+def test_cpf_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "CPF inválido"):
+        Engenheiro(1111, "Mateus", "7198442578", "mateus@gmail.com", "888888888888882", "111111111111", 
                     "8479", Setores.ENGENHARIA, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.MASCULINO, EstadoCivil.SEPARADO, "7444")

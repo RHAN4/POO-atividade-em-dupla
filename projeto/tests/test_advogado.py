@@ -1,7 +1,6 @@
 import pytest
 from projeto.models.advogado import Advogado
 from projeto.models.endereco import Endereco
-from projeto.models.enums import unidadeFederativa
 from projeto.models.enums.estadoCivil import EstadoCivil
 from projeto.models.enums.generos import Generos
 from projeto.models.enums.setores import Setores
@@ -9,7 +8,7 @@ from projeto.models.enums.unidadeFederativa import UF
 
 @pytest.fixture
 def pessoa_valida():
-    advogado = Advogado(9999, "Ariel", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+    advogado = Advogado(9999, "Ariel", "7198442578", "ariel@gmail.com", "44444444444444", "555555555555", 
                     "8479", Setores.JURIDICO, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
@@ -37,10 +36,10 @@ def test_validar_data_nascimento_advogado(pessoa_valida):
     assert pessoa_valida.dataNascimento == "17/03/1997"
 
 def test_validar_cpf_advogado(pessoa_valida):
-    assert pessoa_valida.CPF == "12574896802"
+    assert pessoa_valida.CPF == "44444444444444"
 
 def test_validar_rg_advogado(pessoa_valida):
-    assert pessoa_valida.RG == "14852974"
+    assert pessoa_valida.RG == "555555555555"
 
 def test_validar_matricula_advogado(pessoa_valida):
     assert pessoa_valida.matricula == "8479"
@@ -74,35 +73,49 @@ def test_validar_endereco_uf_advogado(pessoa_valida):
 
 def test_id_valor_negativo(pessoa_valida):
     with pytest.raises(ValueError, match = "Digite apenas números positivos para o ID"):
-        Advogado(-9999, "Ariel", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+        Advogado(-9999, "Ariel", "7198442578", "ariel@gmail.com", "44444444444444", "555555555555", 
                     "8479", Setores.JURIDICO, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
         
 def test_id_valor_invalido(pessoa_valida):
     with pytest.raises(TypeError, match = "Digite apenas números para o ID"):
-        Advogado("9999", "Ariel", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+        Advogado("9999", "Ariel", "7198442578", "ariel@gmail.com", "44444444444444", "555555555555", 
                     "8479", Setores.JURIDICO, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
 
 def test_nome_vazio(pessoa_valida):
     with pytest.raises(ValueError, match = "O nome não pode estar em branco"):
-        Advogado(9999, "", "7198442578", "ariel@gmail.com", "12574896802", "14852974", 
+        Advogado(9999, "", "7198442578", "ariel@gmail.com", "44444444444444", "555555555555", 
                     "8479", Setores.JURIDICO, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
         
 def test_telefone_invalido(pessoa_valida):
    with pytest.raises(TypeError, match= "Digite apenas números."):
-        Advogado(9999, "Ariel", 7198442578, "ariel@gmail.com", "12574896802", "14852974", 
+        Advogado(9999, "Ariel", 7198442578, "ariel@gmail.com", "44444444444444", "555555555555", 
                     "8479", Setores.JURIDICO, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
 
 def test_email_invalido(pessoa_valida):
    with pytest.raises(TypeError, match= "Email não pode estar vazio."):
-        Advogado(9999, "Ariel", "7198442578", "", "12574896802", "14852974", 
+        Advogado(9999, "Ariel", "7198442578", "", "44444444444444", "555555555555", 
+                    "8479", Setores.JURIDICO, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
+        
+def test_rg_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "RG inválido"):
+        Advogado(9999, "Ariel", "7198442578", "ariel@gmail.com", "44444444444444", "5555555555555", 
+                    "8479", Setores.JURIDICO, 10000, 
+                    Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
+                    "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
+
+def test_cpf_invalido(pessoa_valida):
+    with pytest.raises(TypeError, match = "CPF inválido"):
+        Advogado(9999, "Ariel", "7198442578", "ariel@gmail.com", "444444444444444", "555555555555", 
                     "8479", Setores.JURIDICO, 10000, 
                     Endereco("Avenida W", "12", "Em frente a Embasa", "41825471", "Salvador", UF.BAHIA), 
                     "17/03/1997", Generos.FEMININO, EstadoCivil.SEPARADO, "7444")
